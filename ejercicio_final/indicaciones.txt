@@ -1,0 +1,6 @@
+﻿Un ejemplo de validación compleja es la que consiste en comprobar si un nombre de usuario escogido está libre o ya lo utiliza otro usuario. Como es una validación que requiere el uso de una base de datos muy grande, no se puede realizar en el navegador del cliente. Utilizando las técnicas mostradas anteriormente y la página web que se proporciona:
+
+Crear un script que compruebe con AJAX y la ayuda del servidor si el nombre escogido por el usuario está libre o no.
+El script del servidor se llama compruebaDisponibilidad.php y el parámetro que contiene el nombre se llama login.
+La respuesta del servidor es "si" o "no", en función de si el nombre de usuario está libre y se puede utilizar o ya ha sido ocupado por otro usuario.
+A partir de la respuesta del servidor, mostrar un mensaje al usuario indicando el resultado de la comprobación.

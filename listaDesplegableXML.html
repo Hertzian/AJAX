@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leer dato XML</title>
+</head>
+<body>
+  
+    <select id="listaDeUsuarios" onchange="usuarioSeleccionado()"></select><br><br>
+                
+   <div id="info"></div>
+   
+<script type="text/javascript">
+    
+function ejecutarAjax(){
+    
+    var reqAjax;
+            
+    if(window.XMLHttpRequest){
+        
+        reqAjax = new XMLHttpRequest();
+        
+    }else{
+        
+        reqAjax = new ActiveXObject('Microsoft.XMLHTTP');
+        
+    }
+    
+    reqAjax.onreadystatechange = function(){
+        
+        if(reqAjax.readyState == 4 && reqAjax.status == 200){//esto cuando el request ya finalizó
+            
+            cargaDatos(reqAjax);
+            
+        }
+        
+    }
+    
+    reqAjax.open('GET', 'agenda.xml', true);
+    
+    reqAjax.send();
+    
+}//fin funcion
+    
+function cargaDatos(elemento){//puede utilizar funciones y metodos del parametro que se manda
+    
+    var i;
+    
+    var xmlDoc = elemento.responseXML;
+    
+    var clientes = '';
+    
+    var x = xmlDoc.getElementsByTagName('cliente');
+    
+    for(i = 0; i < x.length; i++){
+        
+        clientes += '<option>' + x[i].getElementsByTagName('nombre')[0].childNodes[0].nodeValue + ' ' +
+                            x[i].getElementsByTagName('apellido')[0].childNodes[0].nodeValue + '</option>'  
+        
+    }
+        
+    console.log(clientes);
+    document.getElementById('listaDeUsuarios').innerHTML = clientes;
+    
+}    
+
+ejecutarAjax();
+    
+function usuarioSeleccionado(){
+    
+    var usuario = document.getElementById('listaDeUsuarios');
+    var cliente = usuario.options[usuario.selectedIndex].text;
+    document.getElementById('info').innerHTML = cliente + ' fue seleccionado';
+    
+}
+    
+</script>
+    
+</body>
+</html>

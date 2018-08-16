@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JASON con Base de Datos</title>
+</head>
+<body>    
+    
+    <div id="info"></div>
+    
+    <script>
+        var resultado, obj, db, myObj, x, txt = "";
+        
+        resultado = document.getElementById("info");        
+            
+            obj = {
+                "table":"customers", 
+                "limit":20
+            };
+            
+            db = JSON.stringify(obj);
+            
+            var jasonSaurio = new XMLHttpRequest();
+            
+            jasonSaurio.onreadystatechange = function(){
+                
+                if(this.readyState == 4 && this.status == 200){
+                    
+                    myObj = JSON.parse(this.responseText);
+                    
+                    txt += '<select>';
+                    
+                    for(x in myObj){
+                        
+                        txt += '<option>' + myObj[x].CompanyName + '</option>';
+                        
+                    }
+                    
+                    txt += '</select>';
+                    
+                    resultado.innerHTML = txt;
+                    
+                    
+                }
+                
+            }
+            
+            jasonSaurio.open("POST", "json_demo_db.php", true);
+            
+            jasonSaurio.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            
+            jasonSaurio.send("x=" + db);//php recibe este parametro por post
+            
+        
+        
+        
+    </script>
+    
+</body>
+</html>

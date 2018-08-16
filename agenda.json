@@ -1,0 +1,27 @@
+[
+    {
+        "nombre":"Eduardo",
+        "apellido":"Aguilar",
+        "edad":35
+    },
+    {
+        "nombre":"Edith",
+        "apellido":"Lorenzana",
+        "edad":30
+    },
+    {
+        "nombre":"Pedro",
+        "apellido":"Fernandez",
+        "edad":55
+    },
+    {
+        "nombre":"Jhony",
+        "apellido":"Laboriel",
+        "edad":78
+    },
+    {
+        "nombre":"Pedro",
+        "apellido":"Perez",
+        "edad":28
+    }
+]

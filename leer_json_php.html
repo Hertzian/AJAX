@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Información obtenida de un JSON</title>
+</head>
+<body>
+   
+    <button onclick="ajax_get_jason()">Mostrar Datos</button>
+    <hr>
+    
+    <div id="info"></div>
+    
+    <script type="text/javascript">
+        var resultado = document.getElementById("info");
+        
+        function ajax_get_jason(){
+            
+            var superAjax = new XMLHttpRequest();
+            
+            superAjax.onreadystatechange = function(){
+                
+                if(superAjax.readyState == 4 && superAjax.status == 200){
+                    
+                    var datos = JSON.parse(superAjax.responseText);
+                    console.log(datos);
+                    
+                    if(resultado.innerHTML == ""){
+                        
+                        resultado.innerHTML += "Nombre " + datos.nombre + "<br>" + " tiene " + datos.edad + " vive en " + datos.ciudad + "<hr>";
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            superAjax.open("GET", "json_php.php", true);
+            
+            superAjax.send();
+            
+        }
+        
+    </script>
+</body>
+</html>

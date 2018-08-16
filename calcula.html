@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calcula</title>
+</head>
+<body>
+    <p><label for="numero1">Primer número</label></p>
+    <p><input type="text" id="numero1"></p>
+    <p><label for="numero2">Segundo número</label></p>
+    <p><input type="text" id="numero2"></p>
+    
+    <button type="submit" onclick="ajaxGET();">Enviar</button>
+    
+    <div id="info"></div>   
+    
+    <script type="text/javascript">
+    
+        var respuesta = document.getElementById('info');
+        
+        function ajaxGET(){
+            
+            var reqAjax;
+            
+            if(window.XMLHttpRequest){
+                
+                reqAjax = new XMLHttpRequest();
+                
+            }
+            else{
+                
+                reqAjax = new ActiveXObject('Microsoft.XMLHTTP');
+                
+            }
+            
+            var num1 = document.getElementById('numero1').value;
+            var num2 = document.getElementById('numero2').value;
+            
+            var numeros = 'numero1=' + num1 + '&numero2=' + num2;//variable con variables contatenadas y declarado como si fuera a pasarse por GET
+            
+            reqAjax.onreadystatechange = function(){
+                
+                if(reqAjax.readyState == 4 && reqAjax.status == 200){
+                    
+                    respuesta.innerHTML = reqAjax.responseText;
+                    
+                }
+                
+            }//checar bien bien ubicacion de las llaves
+            
+            reqAjax.open('GET', 'calcula.php?' + numeros, true);
+
+            reqAjax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');//si se manda informacion se debe mandar el parametro en el siguiente metodo como parametro
+
+            reqAjax.send(numeros);//es la variable que se declaro en la funcion donde se concatena todo
+                
+            
+        }//fin funcion
+        
+        
+    </script> 
+    
+</body>
+</html>

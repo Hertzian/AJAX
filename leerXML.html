@@ -1,0 +1,65 @@
+e<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leer dato XML</title>
+</head>
+<body>
+   <button onclick="ejecutarAjax()">Mostrar información</button><br><br>
+   
+   <div id="info"></div>
+   
+<script type="text/javascript">
+    
+var resultado = document.getElementById('info');
+    
+var arr=[];
+    
+function ejecutarAjax(){
+    
+    var reqAjax;
+            
+    if(window.XMLHttpRequest){
+        
+        reqAjax = new XMLHttpRequest();
+        
+    }
+    else{
+        
+        reqAjax = new ActiveXObject('Microsoft.XMLHTTP');
+        
+    }
+    
+    reqAjax.onreadystatechange = function(){
+        
+        if(reqAjax.readyState == 4 && reqAjax.status == 200){//esto cuando el request ya finalizó
+            
+            if(this.responseXML != null){
+                
+                arr[0] = this.responseXML.getElementsByTagName('nombre').item(0);
+                arr[1] = this.responseXML.getElementsByTagName('apellido').item(0);
+                arr[2] = this.responseXML.getElementsByTagName('edad').item(0);
+                arr[3] = this.responseXML.getElementsByTagName('salario').item(0);
+                
+                resultado.innerHTML =   arr[0].firstChild.nodeValue + ' ' + 
+                                        arr[1].firstChild.nodeValue + ' tiene ' +
+                                        arr[2].firstChild.nodeValue + ' años y su salario es ' +
+                                        arr[3].firstChild.nodeValue;
+                
+            }
+            
+        }
+        
+    }
+    
+    reqAjax.open('GET', 'datos.xml', true);
+    
+    reqAjax.send();
+    
+}
+    
+    
+</script>
+    
+</body>
+</html>

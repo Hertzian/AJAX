@@ -1,0 +1,63 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Envio por POST</title>
+</head>
+<body>
+    <p><label for="nombre">Nombre:</label></p>   
+    <p><input type="text" id="nombre"></p>
+    <p><label for="apellido">Apellido:</label></p>
+    <p><input type="text" id="apellido"></p>
+    
+    <input type="submit" value="Enviar" onclick="ajaxPOST();">
+    
+    <div id="info"></div>
+    
+    
+    <script type="text/javascript">
+    
+        var respuesta = document.getElementById('info');
+        
+        function ajaxPOST(){
+            
+            var reqAjax;
+            
+            if(window.XMLHttpRequest){
+                
+                reqAjax = new XMLHttpRequest();
+                
+            }
+            else{
+                
+                reqAjax = new ActiveXObject('Microsoft.XMLHTTP');
+                
+            }
+            
+            var nom = document.getElementById('nombre').value;
+            var ape = document.getElementById('apellido').value;
+            
+            var usuario = 'nombre=' + nom + '&apellido=' + ape;//variable con variables contatenadas y declarado como si fuera a pasarse por GET
+            
+            reqAjax.onreadystatechange = function(){
+                
+                if(reqAjax.readyState == 4 && reqAjax.status == 200){
+                    
+                    respuesta.innerHTML = reqAjax.responseText;
+                    
+                }
+                
+            }//checar bien bien ubicacion de las llaves
+            
+            reqAjax.open('POST', 'recibePOST.php', true);
+
+            reqAjax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');//si se manda informacion se debe mandar el parametro en el siguiente metodo como parametro
+
+            reqAjax.send(usuario);//es la variable que se declaro en la funcion donde se concatena todo
+                
+            
+        }//fin funcion
+    
+    </script>
+</body>
+</html>

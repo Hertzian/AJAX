@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agenda>
+  
+   <cliente>
+       <nombre>Jose</nombre>
+       <apellido>Cardenas</apellido>
+       <edad>20</edad>
+       <salario>3000</salario>
+   </cliente>
+   
+   <cliente>
+       <nombre>Pedro</nombre>
+       <apellido>Ornelas</apellido>
+       <edad>35</edad>
+       <salario>4000</salario>
+   </cliente>
+   
+   <cliente>
+       <nombre>Edson</nombre>
+       <apellido>Castellanos</apellido>
+       <edad>39</edad>
+       <salario>5000</salario>
+   </cliente>
+   
+   <cliente>
+       <nombre>Heminio</nombre>
+       <apellido>Pelaez</apellido>
+       <edad>24</edad>
+       <salario>6000</salario>
+   </cliente>
+   
+   <cliente>
+       <nombre>Armando</nombre>
+       <apellido>Gonzalez</apellido>
+       <edad>46</edad>
+       <salario>7000</salario>
+   </cliente>
+   
+   <cliente>
+       <nombre>Erasmo</nombre>
+       <apellido>Espinoza</apellido>
+       <edad>32</edad>
+       <salario>8000</salario>
+   </cliente>
+   
+</agenda>

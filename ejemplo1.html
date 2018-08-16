@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo 1 AJAX</title>
+</head>
+<body>
+   
+    <h1>Primer Ejemplo Ajax</h1>
+    <button onclick="ejecutarAJAX()">Da clic aqui</button>
+    
+    <div id="info"></div>
+    
+    
+    
+    
+    
+    <script type="text/javascript">
+        
+        function ejecutarAJAX(){
+            
+            var ajaxRequest;        
+            
+            // Para navegadores nuevos        
+            if(window.XMLHttpRequest){
+                
+                ajaxRequest = new XMLHttpRequest();    
+                
+            }else{
+                
+                //para navegadores IE6 o IE5
+                ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                
+            }
+
+            ajaxRequest.onreadystatechange = function(){
+                
+                if(ajaxRequest.readyState == 4 && ajaxRequest.status == 200){//esto cuando el request ya finalizó
+                    
+                    document.getElementById('info').innerHTML = ajaxRequest.responseText;
+                    
+                }
+                
+            }
+
+            ajaxRequest.open('GET','info.txt', true);//medio para manejo, el archivo que se desea, que sea asíncrono
+
+            ajaxRequest.send();
+            
+        }
+        
+        
+        
+        
+        
+    </script>
+</body>
+</html>

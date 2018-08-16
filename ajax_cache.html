@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Evitar datos del cache</title>
+</head>
+<body>
+   <button type="button" onclick="muestraFecha()">
+       Solicitar datos
+   </button>
+   
+   <div id="info"></div>
+   
+    <script>
+        function muestraFecha(){
+            
+            var xhr = new XMLHttpRequest;
+            
+            xhr.onreadystatechange = function(){
+                
+                if(this.readyState == 4 && this.status == 200){
+                    
+                    document.getElementById('info').innerHTML = this.responseText;
+                    
+                }
+                
+            }
+            
+            xhr.open("GET", "muestra_fecha.php?t=" + Math.random(), true);
+            xhr.send();
+            
+        }
+    </script>
+    
+</body>
+</html>
